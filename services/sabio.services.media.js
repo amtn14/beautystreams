@@ -8,8 +8,7 @@ sabio.services.media.updateParentId = function (id, parentId, onSuccess, onError
     var settings = {
         cache: false
         , contentType: "application/x-www-form-urlencoded; charset=UTF-8"
-        , data: { //this data is being sent to the apiController where it'll get bound with the 'MediaParentRequest' model. 
-            //make sure the names match up! 'MediaId' + 'MediaParentId'
+        , data: { 
             MediaId: id,
             MediaParentId: parentId
         }
@@ -53,11 +52,10 @@ sabio.services.media.deleteMediaById = function (id, onSuccess, onError) {
 //------------------"GETALL" AJAX CALL:
 sabio.services.media.getAll = function (onSuccess, onError) {
     var url = "/api/media/list";
-    //var myData = $("#mediaForm").serialize(); //No data is being pulled from the form--we don't need this!
     var settings = {
         cache: false
         , contentType: "application/x-www-form-urlencoded; charset=UTF-8"
-        , data: null //setting to 'null' because we got rid of 'myData' as we're getting data from the db and not sending it to the db
+        , data: null 
         , dataType: "json"
         , success: onSuccess
         , error: onError
