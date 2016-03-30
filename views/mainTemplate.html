@@ -1,0 +1,43 @@
+﻿<!--The tree structure for imgBank + MediaLib (shared and ng-included on their cshtml views):-->
+<div class="panel panel-inverse" id="treeContainer">
+    <div class="panel-heading ion-bigger" id="mediaLibMenu">
+        <div class="panel-title pull-left">
+            <h4 class="text-white">{{TC.treeHeader}}</h4>
+        </div>
+        <!--Tree panel heading for medLib + imgBank-->
+        <div class="panel-heading-btn pull-right">
+            <a ng-click="TC.onClickAddFolder()" ng-show="TC.showMedLibHeading" class="btn btn-sm btn-circle btn-warning ion-bigger"><i class="ion-folder" uib-tooltip="Add Folder" tooltip-append-to-body="true"></i></a>
+            <a ng-click="TC.onClickAddMedia()" ng-show="TC.showMedLibHeading" class="btn btn-sm btn-circle btn-info ion-bigger"><i class="ion-upload" uib-tooltip="Upload Media" tooltip-append-to-body="true"></i></a>
+            <a ng-click="TC.clickToEdit()" ng-show="TC.showMedLibHeading" ng-disabled="TC.medLibEditDisabled" class="btn btn-sm btn-circle btn-primary ion-bigger"><i class="ion-edit" uib-tooltip="Edit File" tooltip-append-to-body="true"></i></a>
+            <a ng-click="TC.onClickDelete()" ng-show="TC.showMedLibHeading" ng-disabled="TC.medLibDeleteDisabled" class="btn btn-sm btn-circle btn-danger ion-bigger"><i class="ion-trash-b" uib-tooltip="Delete File" tooltip-append-to-body="true"></i></a>
+            <a ng-click="TC.refreshTreeAndClearMedSelection()" ng-disabled="TC.refreshMedSelDisabled" class="btn btn-sm btn-circle btn-default ion-bigger"><i class="ion-refresh" uib-tooltip="Reset Media Selection" tooltip-append-to-body="true"></i></a>
+        </div>
+        <div class="panel-heading"></div>
+    </div>
+    <div class="panel-body">
+        <div id="mediaLibTree">
+            <!--TREE HERE:-->
+            <div treecontrol
+                 class="tree-light"
+                 tree-model="dataForTheTree"
+                 options="treeOptions"
+                 on-selection="nodeSelectionHandler(node, selected)"
+                 on-node-toggle="nodeToggleHandler(node, expanded)"
+                 ng-click="TC.multipleSelect($event)"
+                 selected-nodes="selectedNodes"
+                 expanded-nodes="expandedNodes">
+                <span uib-popover-template="'/Scripts/sabio/mediaLibrary/templates/myPopoverTemplate.html'" popover-append-to-body="true" popover-placement="right" popover-trigger="none" popover-is-open="(TC.currentNodeId != null && TC.currentNodeId == node.id)" ng-mouseenter="TC.validateNodeType(node)" ng-mouseleave="TC.removePopover()" popover-title="{{node.tableData.mediaTitle}}">
+                    <span ng-switch="" on="node.type">
+                        <span ng-switch-when="folder" class="fa fa-folder-open-o" aria-hidden="true"></span>
+                        <!--<span ng-switch-when="pic" class="fa fa-picture-o" aria-hidden="true"></span> For when there is a broken url media? or url is not avail.-->
+                        <span ng-switch-when="pic" aria-hidden="true"><img class="img-thumbnail" ng-src="{{node.tableData.mediaThumbnailFullUrl[1]}}" width="70"></span>
+                        <span ng-switch-when="doc" class="fa fa-file-pdf-o" aria-hidden="true"></span>
+                        <span ng-switch-when="movie" class="fa fa-file-video-o" aria-hidden="true"></span>
+                    </span>
+                    {{node.text}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end tree panel -->
