@@ -1,6 +1,6 @@
-# beautystreams/Directory
+# beautystreams
 
-code samples:
+code samples directory:
 
 Front-End:
 <br/>
