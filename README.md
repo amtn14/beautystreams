@@ -7,6 +7,8 @@ Front-End:
 beautystreams/views/IndexNg4.cshtml (JS,jQuery,Angular,js)
 <br/>
 beautystreams/services/sabio.services/media.js (jQuery ajax calls)
+beautystreams/views/mainTemplate.html (angular.js - view)
+beautystreams/controllers/mediaLibController.js (angular.js - controller)
 
 Middle Tier(c#/asp.net mvc):
 <br/>
