@@ -2,16 +2,20 @@
 
 code samples directory:
 
-front-end:
+Front-End:
+<br/>
 beautystreams/views/IndexNg4.cshtml (JS,jQuery,Angular,js)
+<br/>
 beautystreams/services/sabio.services/media.js (jQuery ajax calls)
 
-middle-tier(c#/asp.net mvc):
+Middle Tier(c#/asp.net mvc):
+<br/>
 beautystreams/services/mediaService.cs
 beautystreams/controllers/mediaLibraryController.cs
 beautystreams/controllers/apiControllers/MediaApiController.cs
 beautystreams/models/mediaRequest.cs
 beautystreams/models/mediaTagRequest.cs
 
-back-end(SQL Server 2014 + T-Sql):
+Back-End(SQL Server 2014 + T-Sql):
+<br/>
 beautystreams/storedProc
