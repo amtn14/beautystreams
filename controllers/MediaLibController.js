@@ -84,55 +84,13 @@
         }
         // =============== MedLib setup============= \\
         //variables for mL forms + validation:
-        vm.showErrors = false;
-        vm.addFolder = null;
-        vm.editImageForm = null;
-        vm.editFolderForm = null;
-        vm.mDetails = null;
-        vm.fDetails = null;
-        vm.eFolder = null;
-        vm.eMedia = null;
-        vm.aFolder = null;
-        vm.tBdFolders = 0;
-        vm.tBdMedias = 0;
-        vm.mainFileTbD = null;
-        vm.myDropzone = null;
-        vm.mediaCreatedDate = null; //holds the date of media created
-        Dropzone.autoDiscover = false;
-
+            //removed for brevity 
         //ng-shows + ng-disabled:
-        vm.hideAllPanels = _hideAllPanels;
-        vm.wellDel = false;
-        vm.mediaCount = false;
-        vm.folderCount = false;
-        vm.displayDzMsg = true;
-        vm.medLibEditDisabled = true;
-        vm.medLibDeleteDisabled = true;
-        vm.folderSlugDisabled = true;
-        vm.refreshMedSelDisabled = true;
-
+            //removed for brevity 
         //functions + error/success handlers:
-        vm.clickToEdit = _clickToEdit;                          //handles media + folders
-        vm.submitFolderEdit = _submitFolderEdit;
-        vm.submitMediaEdit = _submitMediaEdit;
-        vm.updateMlMediaSuccess = _updateMlMediaSuccess;
-        vm.updateFolderSuccess = _updateFolderSuccess;
-        vm.addFolderSlug = _addFolderSlug;                      //handles the slug for add folder
-        vm.editFolderSlug = _editFolderSlug;                    //handles the slug for edit folder
-
-        vm.onClickAddFolder = _onClickAddFolder;
-        vm.onClickAddMedia = _onClickAddMedia;
-        vm.insertFolder = _insertFolder;
-        vm.insertFolderSuccess = _insertFolderSuccess;
-        vm.updateMediaPidSuccess = _updateMediaPidSuccess;  //helps dropzone append medias to the right folder
-
-        vm.onClickDelete = _onClickDelete;
-        vm.confirmDelete = _confirmDelete;              //handles media + folders            
-        vm.singleMediaDeleteSuccess = _singleMediaDeleteSuccess;
-        vm.mediaDeleteSuccess = _mediaDeleteSuccess;
-        vm.confirmDeleteSuccess = _confirmDeleteSuccess;
-        vm.getCountSuccess = _getCountSuccess;          //count media+folder recursively for delete feature
-        vm.checkForSelectedMediaDupes = _checkForSelectedMediaDupes; //is called when user selects a media. checks to see if mediaId has already been pushed to gallery-list array
+            //removed for brevity 
+        //Cancel/Close Panel:
+            //removed for brevity 
 
         //values for dropdown lists + other arrays:
         //--status dropdown -- active or not active
@@ -146,43 +104,8 @@
                 { 'label': 'Admin', 'value': 'admin' }
         ];
 
-        //Cancel/Close Panel:
-        vm.addFolderCancel = _addFolderCancel;
-        vm.deleteCancel = _deleteCancel;
-        vm.addMediaCancel = _addMediaCancel;
-        vm.editFolderCancel = _editFolderCancel;
-        vm.editMediaCancel = _editMediaCancel;
-        vm.editVideoCancel = _editVideoCancel;
-        vm.editPdFcancel = _editPdFcancel;
-        vm.detailsFolderCancel = _detailsFolderCancel;
-        vm.detailsMediaCancel = _detailsMediaCancel;
-        vm.detailsVideoCancel = _detailsVideoCancel;
-        vm.detailsPdFcancel = _detailsPdFcancel;
-
         // =============== imageBank setup============= \\
-        // ===== Image Tagging =====
-        vm.mediaWithTags = null     //container for a single media + tags associated with it. Using to send to the img tagging modal
-        vm.showCheck = _showCheck;
-        vm.showEditImageDetails = false;
-        vm.showImageTagging = false;
-        vm.currentImageDetails = null;
-
-        // ===== On Clicks =====
-        vm.onImageTaggingClick = _onImageTaggingClick;
-        vm.onEditImageDetailsClick = _onEditImageDetailsClick;
-        vm.imageTaggingCancel = _imageTaggingCancel;
-        vm.editImageCancel = _editImageCancel;
-
-        //declare imageBank functions:
-        vm.selectImageBankCategoriesSuccess = _selectImageBankCategoriesSuccess;
-        vm.selectImageDetailsByIdSuccess = _selectImageDetailsByIdSuccess;
-        vm.selectMediaByIdSuccess = _selectMediaByIdSuccess;
-
-        // ===== Videos ===== (Will need to update when we have video data)
-        vm.videoId = null;
-        vm.videoFileName = null;
-        vm.videoCreated = null;
-        vm.videoUsername = null;
+            //removed for brevity -- function + variable declarations and success/error handlers for img Bank would go here 
 
         // =============== Popover + Media Selection Panel variables + functions(applicable to iB + mL) ============= \\
         //2 arrays - 1 to store selected media obj and 1 to store just the ID of those media obj in the array for selected media obj
@@ -339,24 +262,6 @@
                         vm.scrollToTop();
                         vm.mDetails = vm.selectedNodeDetails;
                         vm.checkForSelectedMediaDupes(vm.selectedNode, selected); //checks to see if the media node has been selected already
-                        //vm.eMedia = vm.selectedNode;
-                        //console.log(vm.mDetails.mediaFullUrl, vm.mDetails);
-                        //for (var i = 0; i < vm.statusItems.length; i++) {
-                        //    if (vm.statusItems[i].value == vm.eMedia.mediaStatus.value) {
-                        //        vm.eMedia.mediaStatus = vm.statusItems[i];
-                        //        break;
-                        //    }
-                        //}
-                        //console.log("before defining", vm.eMedia, vm.eMedia.mediaStatus);
-
-                        //if (vm.selectedNode.mediaStatus.value == true) {
-                        //    vm.eMedia.mediaStatus = vm.statusItems[0];
-
-                        //} else {
-                        //    vm.eMedia.mediaStatus = vm.statusItems[1];
-                        //}
-                        //vm.eMedia.mediaStatus = (vm.selectedNode.mediaStatus.label == 'Active') ? vm.statusItems[0] : vm.statusItems[1];
-                        //console.log("after defining", vm.eMedia, vm.eMedia.mediaStatus);
                         if (vm.selectedNodeId !== null) {
                             vm.$mediaService.selectById(vm.selectedNodeId, vm.selectMediaByIdSuccess, vm.ajaxCallError);
                         }
@@ -365,30 +270,15 @@
                             vm.$imageDetailsService.selectById(vm.selectImageDetailsByIdSuccess, vm.ajaxCallError, vm.selectedNodeId);
                         }
                         break;
-                    case "movie": //will need to update when we get video data to bring in and work with:
-                        vm.link = '/videoDetails/' + vm.selectedNodeId;
-                        vm.setRoute(vm.link);
-                        vm.hideAllPanels();
-                        vm.displayVideoDetails = true;
-                        vm.scrollToTop();
-                        vm.videoId = vm.selectedNodeDetails.data.id;
-                        vm.videoFileName = vm.selectedNodeDetails.text;
-                        vm.videoCreated = vm.selectedNodeDetails.data.created.slice(0, 10);
-                        vm.videoUsername = vm.selectedNodeDetails.data.userId;
-                        break;
                 }
             }
         };
 
         vm.$scope.nodeToggleHandler = function (sel, expanded) {
-            vm.selectedNode = sel;
-            vm.selectedNodeId = sel.id;
-            if (expanded == true) {
-                //on click, get all folders + media with parent id with currentFolderId -- no need to get it, if user closes folder:
-                vm.$folderService.selectByParentFolderId(vm.selectedNodeId, vm.selectFoldersAndMediasByPidSuccess, vm.ajaxCallError);
-            }
+            //removed
         };
-
+        
+        //getting data to load the tree:
         function _selectFoldersAndMediasByPidSuccess(data, status, settings) {
             console.log("selectFoldersAndMediasByPidSuccess getting folders", data.item.folderInfo);
             //getting folders:
@@ -425,7 +315,7 @@
                 vm.directChildrenMediaUnderSingleFolder = tempObjArray;
             }
 
-            // For some reason, vm.selectedNode.children + tempObjArray cannot be empty/null. Current workaround:
+            //vm.selectedNode.children + tempObjArray cannot be empty/null. Current workaround:
             if (!data.item.mediaInfo && !data.item.folderInfo) {
                 var tempObj = {};
                 tempObj.text = "(empty)";
@@ -507,80 +397,16 @@
             vm.showImageTagging = false;
         }
 
-        //cancel+close panels functions(will need to come back and clean this up --condense + combine code):
+        //cancel+close panels functions are declared here:
+        //removed all but the 'addFolderCancel()' for brevity:
         function _addFolderCancel() {
             vm.displayFolderAdd = false;
             vm.aFolder = null; //resets the form
             resetAddressUrl();
         }
 
-        function _deleteCancel() {
-            vm.displayDeletePanel = false;
-            resetAddressUrl();
-        }
-
-        function _addMediaCancel() {
-            vm.displayMediaAdd = false;
-            resetAddressUrl();
-        }
-
-        function _editFolderCancel() {
-            vm.displayFolderEdits = false;
-            vm.displayFolderDetails = true;
-            vm.eFolder = null; //resets the form
-            resetAddressUrl();
-        }
-
-        function _editMediaCancel() {
-            vm.displayMediaEdits = false;
-            resetAddressUrl();
-            //reset arrays on cancel:
-            vm.refreshTreeAndClearMedSelection();
-            resetAddressUrl();
-        }
-
-        function _editVideoCancel() {
-            vm.displayVideoEdits = false;
-            resetAddressUrl();
-        }
-
-        function _editPdFcancel() {
-            vm.displayPdFedits = false;
-            resetAddressUrl();
-        }
-
-        function _detailsFolderCancel() {
-            vm.displayFolderDetails = false;
-            //vm.refreshTreeAndClearMedSelection();
-            //vm.$scope.expandedNodes = [];
-            resetAddressUrl();
-        }
-
-        function _detailsMediaCancel() {
-            vm.displayMediaDetails = false;
-            vm.currentImageDetails = null;
-            //reset arrays on cancel:
-            vm.refreshTreeAndClearMedSelection();
-            resetAddressUrl();
-        }
-
-        function _detailsVideoCancel() {
-            vm.displayVideoDetails = false;
-            resetAddressUrl();
-        }
-
-        function _detailsPdFcancel() {
-            vm.displayPdFdetails = false;
-            resetAddressUrl();
-        }
-
         //***SUBMIT + UPDATE/EDIT functions (folders + medias):
-        function _onClickAddMedia() {
-            console.log(vm.selectedNodeId);
-            vm.hideAllPanels();
-            vm.displayMediaAdd = true;
-        }
-
+        //removed function/code for media + folder edits for brevity:
         function _onClickAddFolder() {
             console.log(vm.selectedNodeId);
             vm.hideAllPanels();
@@ -597,72 +423,6 @@
                 console.log(slug);
                 vm.aFolder.slug = slug;
             }
-        }
-
-        function _clickToEdit() {
-            if (vm.selectedNode == null) {
-                vm.$notificationService.warning("Please select a file to edit!");
-            } else if (vm.selectedNode && vm.selectedNodeType == "folder") {
-                vm.hideAllPanels();
-                vm.displayFolderEdits = true;
-            } else if (vm.selectedNode && vm.selectedNodeType == "pic") {
-                vm.hideAllPanels();
-                vm.displayMediaEdits = true;
-            }
-            console.log("found post with id:" + vm.selectedNodeId);
-        }
-
-        //slug code:
-        function _editFolderSlug() {
-            if (vm.eFolder.folderName == null) {
-                //do nothing
-            }
-            else {
-                var slug = vm.eFolder.folderName.replace(/\W+/g, '-').toLowerCase();
-                console.log(slug);
-                vm.eFolder.slug = slug;
-            }
-        }
-
-        function _submitMediaEdit() {
-            vm.showErrors = true;
-            if (vm.editImageForm.$valid) {
-                console.log(vm.eMedia);
-                vm.$mediaService.updateBS(vm.selectedNodeId, vm.eMedia, vm.updateMlMediaSuccess, vm.ajaxCallError)
-            } else {
-                vm.$notificationService.error("Please fill out all required fields.");
-            }
-        }
-
-        function _updateMlMediaSuccess(data) {
-            vm.$notificationService.success("Successfully saved your changes!");
-            console.log("successfully updated media", data);
-            vm.showErrors = false;
-            vm.displayMediaEdits = false;
-            loadTree(); //refresh tree to show most recent changes
-            vm.refreshTreeAndClearMedSelection();
-            vm.$scope.expandedNodes = [];
-        }
-
-        function _submitFolderEdit() {
-            vm.showErrors = true;
-            console.log("about to update post with id", vm.selectedNodeId);
-            if (vm.editFolderForm.$valid) {
-                vm.$folderService.update(vm.selectedNodeId, vm.eFolder, vm.updateFolderSuccess, vm.ajaxCallError);
-            } else {
-                vm.$notificationService.error("Please fill out all required fields.");
-            }
-        }
-
-        function _updateFolderSuccess(data) {
-            vm.$notificationService.success("Successfully saved your changes!");
-            console.log("successfully updated folder", data);
-            vm.showErrors = false;
-            vm.displayFolderEdits = false;
-            vm.displayFolderDetails = true;
-            loadTree(); //refresh tree to show most recent changes
-            vm.refreshTreeAndClearMedSelection();
-            vm.$scope.expandedNodes = [];
         }
 
         function _insertFolder() {
@@ -775,77 +535,8 @@
             window.open(stringConcat);
         }
 
-        //***DELETE functions (folders + medias):
-        function _onClickDelete() {
-            if (vm.selectedNode == null) {
-                vm.$notificationService.warning("Please select a folder or media before proceeding");
-            } else {
-                vm.hideAllPanels();
-                if (vm.selectedNodeType == 'folder') {
-                    vm.displayFolderDetails = true;
-                    vm.mainFileTbD = vm.selectedNodeDetails.folderName;
-                    vm.wellDel = true;
-                    vm.folderCount = true;
-                    if (vm.tBdMedias > 0) {
-                        vm.mediaCount = true;
-                    }
-                    else {
-                        vm.mediaCount = false;
-                    }
-                    vm.displayDeletePanel = true;
-                } else if (vm.selectedNodeType == 'pic') {
-                    vm.displayMediaDetails = true;
-                    vm.mainFileTbD = vm.selectedNodeDetails.mediaTitle;
-                    vm.wellDel = true;
-                    vm.folderCount = false;
-                    vm.mediaCount = true;
-                    vm.displayDeletePanel = true;
-                }
-            }
-        }
-
-        function _confirmDelete() {
-            //add in ajax call for folders + media;
-            if (vm.selectedNodeType == 'folder') {
-                vm.$folderService.deleteMediaByFolderId(vm.selectedNodeId, vm.mediaDeleteSuccess, vm.ajaxCallError);
-            } else if (vm.selectedNodeType == 'pic') {
-                //grabbing the selectedNodeId  to "delete" the media:
-                vm.$mediaService.deleteMediaById(vm.selectedNodeId, vm.singleMediaDeleteSuccess, vm.ajaxCallError);
-            }
-        }
-
-        function _singleMediaDeleteSuccess(data) {
-            vm.$notificationService.success("Successfully deleted selected media.");
-            loadTree(); //equivalent to "refresh tree" -- get all folders + media with parentId = 0
-            console.log("Successfully deleted media", data);
-            vm.hideAllPanels();
-            vm.refreshTreeAndClearMedSelection();
-            vm.$scope.expandedNodes = [];
-            //reset address url:
-            vm.link = null;
-            vm.setRoute(vm.link);
-        }
-
-        function _mediaDeleteSuccess(data) {
-            console.log("Successfully deleted media inside the selected folder");
-            vm.$folderService.deleteByIdPlusDescendants(vm.selectedNodeId, vm.confirmDeleteSuccess, vm.ajaxCallError);
-        }
-
-        function _confirmDeleteSuccess(data) {
-            vm.$notificationService.success("Successfully deleted!");
-            loadTree(); //equivalent to "refresh tree" -- get all folders + media with parentId = 0
-            console.log("Successfully deleted folders", data);
-            vm.tBdFolders = null;
-            vm.tBdMedias = null;
-            vm.wellDelFolder = false;
-            vm.wellDelMedia = false;
-            vm.hideAllPanels();
-            vm.refreshTreeAndClearMedSelection();
-            vm.$scope.expandedNodes = [];
-            //reset address url:
-            vm.link = null;
-            vm.setRoute(vm.link);
-        }
+        //***DELETE functions (folders + medias) -- removed
+        
         //==========IMAGE-BANK CODE:
         //***IB Functions:
         //used in media details panel...if input field doesn't have a value, do not ng-show input field:
@@ -909,62 +600,7 @@
             vm.showEditImageDetails = true;
         }
 
-        //***CLOSE + CANCEL functions for imageBank:
-        function _imageTaggingCancel() {
-            vm.showImageTagging = false;
-            resetAddressUrl();
-            //reset and clear the mediaSelection panel:
-            if (vm.selectedMediaIds.length == 1) {
-                vm.displayMediaDetails = true;
-            } else {
-                vm.showMedSelPanel = true;
-            }
-        }
-
-        function _editImageCancel() {
-            vm.showEditImageDetails = false;
-            vm.displayMediaDetails = true;
-            resetAddressUrl();
-        }
-
-        ///***SUCCESS + ERROR handlers:
-        function _selectMediaByIdSuccess(data, status, settings) {
-            vm.mediaWithTags = data.item;
-            vm.eMedia = null;
-            vm.notify(function () {
-                console.log("select media by id success", data);
-                vm.eMedia = data.item.media;
-            });
-        }
-
-        function _selectImageBankCategoriesSuccess(data, status, settings) {
-            //console.log("select image bank categories success", data.items);
-            vm.notify(function () {
-                vm.imageBankCategories = data.items;
-            });
-        }
-
-        function _selectImageDetailsByIdSuccess(data, status, settings) {
-            //console.log("select image details: ", data);
-            if (data.items == null) {
-                //console.log("data items DNE");
-                vm.currentImageDetails = null;
-            } else {
-                //console.log("data items exist");
-                vm.notify(function () {
-                    console.log("select image details by success ", data.items[0]);
-                    vm.currentImageDetails = null;
-                    var temp = data.items[0];
-                    if (data.items[0].liveDate == "0001-01-01T00:00:00") {
-                        temp.liveDate = null;
-                    } else {
-                        var tempDate = temp.liveDate;
-                        temp.liveDate = new Date(tempDate);
-                        (temp.liveDate).setMinutes((temp.liveDate).getMinutes() + ((temp.liveDate).getTimezoneOffset()));
-                    }
-                    vm.currentImageDetails = temp;
-                });
-            }
-        }
+        //***CLOSE + CANCEL functions for imageBank - removed
+        ///***SUCCESS + ERROR handlers - removed
     }
 })();        //end of controller + invoking function
